@@ -48,7 +48,7 @@ class WeatherView: UIView {
     
     private func setupCloseButton() {
         closeButton.setTitle("close", for: .normal)
-        closeButton.setTitleColor(.blue, for: .normal)
+        closeButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 1.0), for: .normal)
         addSubview(closeButton)
         let x = screenWidth/4
         let y = screenHeight/2 + screenWidth/4 + 80
@@ -56,11 +56,18 @@ class WeatherView: UIView {
         let sizeOfCloseLabel = closeButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
         let point = CGPoint(x: x, y: y)
         closeButton.frame = CGRect(origin: point, size: CGSize(width: width, height: sizeOfCloseLabel.height))
+        
+        //ボタンが押されている時の処理
+        closeButton.addTarget(self, action: #selector(closeButtonTouchDown), for: .touchDown)
+    }
+    @objc func closeButtonTouchDown() {
+        print("ボタンが押された")
+        closeButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 0.2), for: .highlighted)
     }
     
     private func setupReloadButton() {
         reloadButton.setTitle("reload", for: .normal)
-        reloadButton.setTitleColor(.blue, for: .normal)
+        reloadButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 1.0), for: .normal)
         addSubview(reloadButton)
         let x = screenWidth/2
         let y = screenHeight/2 + screenWidth/4 + 80
@@ -68,5 +75,12 @@ class WeatherView: UIView {
         let sizeOfreloadLabel = reloadButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
         let point = CGPoint(x: x, y: y)
         reloadButton.frame = CGRect(origin: point, size: CGSize(width: width, height: sizeOfreloadLabel.height))
+        
+        closeButton.addTarget(self, action: #selector(reloadButtonTouchDown), for: .touchDown)
     }
+    @objc func reloadButtonTouchDown() {
+        print("ボタンが押された")
+        reloadButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 0.2), for: .highlighted)
+    }
+    
 }
