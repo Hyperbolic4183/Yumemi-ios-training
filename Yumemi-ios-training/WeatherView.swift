@@ -52,9 +52,10 @@ class WeatherView: UIView {
         addSubview(closeButton)
         let x = screenWidth/4
         let y = screenHeight/2 + screenWidth/4 + 80
-        let size = closeButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+        let width = screenWidth/4
+        let sizeOfCloseLabel = closeButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
         let point = CGPoint(x: x, y: y)
-        closeButton.frame = CGRect(origin: point, size: size)
+        closeButton.frame = CGRect(origin: point, size: CGSize(width: width, height: sizeOfCloseLabel.height))
     }
     
     private func setupReloadButton() {
