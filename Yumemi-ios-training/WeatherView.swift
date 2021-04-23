@@ -99,11 +99,6 @@ class WeatherView: UIView {
     @objc func closeButtonTouchDown() {
         closeButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 0.2), for: .highlighted)
     }
-    /*closeButtonTouchDown(button: UIButton)のようにして
-     closeButtonTouchDownとreloadButtonTouchDownを一つにしたいが
-     #selector()に入るのは関数名のみで引数を指定することはできないようなので断念
-    */
-    
     
     private func setupReloadButton() {
         reloadButton.setTitle("reload", for: .normal)
@@ -123,3 +118,12 @@ class WeatherView: UIView {
     }
     
 }
+/* 懸念点
+ 
+- 課題ページにはUIButtonとUILabelの水平中央が同じになるよう指示されている。Hirizontal Centersを使用するのでなく、CGRectのoriginのx座標を揃えることで同じ処理を実現しているということ。
+ 
+- closeButtonTouchDown(button: UIButton)のようにして、closeButtonTouchDownとreloadButtonTouchDownを一つにしたいが
+ #selector()に入るのは関数名のみで引数を指定することはできないようなので断念したこと
+ 
+ - コードベースでやるにしてもNSAutoLayout使うべきだった？
+ */
