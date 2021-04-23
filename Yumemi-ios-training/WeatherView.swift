@@ -13,8 +13,11 @@ class WeatherView: UIView {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
+    var bottomOfTemperatureLabel: CGFloat = 0
     //UI部品を定義する
     let weatherImageView = UIImageView()
+    let highestTemperatureLabel = UILabel()
+    let lowestTemperatureLabel = UILabel()
     let closeButton = UIButton()
     let reloadButton = UIButton()
     
@@ -30,6 +33,8 @@ class WeatherView: UIView {
     
     private func setup() {
         setupWeatherImageView()
+        setupLowestTemperature()
+        setupHighestTemperature()
         setupCloseButton()
         setupReloadButton()
     }
@@ -50,12 +55,39 @@ class WeatherView: UIView {
         weatherImageView.frame = CGRect(origin: point, size: size)
     }
     
+    private func setupLowestTemperature() {
+        lowestTemperatureLabel.text = String(25)
+        lowestTemperatureLabel.textAlignment = .center
+        lowestTemperatureLabel.textColor = .blue
+        addSubview(lowestTemperatureLabel)
+        let x = screenWidth/4
+        let y = screenHeight/2 + screenWidth/4
+        let width = screenWidth/4
+        let sizeOfLowestTemperatureLabel = lowestTemperatureLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+        let point = CGPoint(x: x, y: y)
+        lowestTemperatureLabel.frame = CGRect(origin: point, size: CGSize(width: width, height: sizeOfLowestTemperatureLabel.height))
+        bottomOfTemperatureLabel = sizeOfLowestTemperatureLabel.height
+    }
+    
+    private func setupHighestTemperature() {
+        highestTemperatureLabel.text = String(35)
+        highestTemperatureLabel.textColor = .red
+        highestTemperatureLabel.textAlignment = .center
+        addSubview(highestTemperatureLabel)
+        let x = screenWidth/2
+        let y = screenHeight/2 + screenWidth/4
+        let width = screenWidth/4
+        let sizeOfLowestTemperatureLabel = highestTemperatureLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+        let point = CGPoint(x: x, y: y)
+        highestTemperatureLabel.frame = CGRect(origin: point, size: CGSize(width: width, height: sizeOfLowestTemperatureLabel.height))
+    }
+    
     private func setupCloseButton() {
         closeButton.setTitle("close", for: .normal)
         closeButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 1.0), for: .normal)
         addSubview(closeButton)
         let x = screenWidth/4
-        let y = screenHeight/2 + screenWidth/4 + 80
+        let y = screenHeight/2 + screenWidth/4 + bottomOfTemperatureLabel + 80
         let width = screenWidth/4
         let sizeOfCloseLabel = closeButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
         let point = CGPoint(x: x, y: y)
@@ -78,7 +110,7 @@ class WeatherView: UIView {
         reloadButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 1.0), for: .normal)
         addSubview(reloadButton)
         let x = screenWidth/2
-        let y = screenHeight/2 + screenWidth/4 + 80
+        let y = screenHeight/2 + screenWidth/4 + bottomOfTemperatureLabel + 80
         let width = screenWidth/4
         let sizeOfreloadLabel = reloadButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
         let point = CGPoint(x: x, y: y)
