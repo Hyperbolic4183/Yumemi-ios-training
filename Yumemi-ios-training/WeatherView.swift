@@ -21,13 +21,17 @@ class WeatherView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        setupWeatherImageView()
-        setupCloseButton()
-        setupReloadButton()
+        setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setup() {
+        setupWeatherImageView()
+        setupCloseButton()
+        setupReloadButton()
     }
     
     //UI部品の初期設定を行う
@@ -61,9 +65,13 @@ class WeatherView: UIView {
         closeButton.addTarget(self, action: #selector(closeButtonTouchDown), for: .touchDown)
     }
     @objc func closeButtonTouchDown() {
-        print("ボタンが押された")
         closeButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 0.2), for: .highlighted)
     }
+    /*closeButtonTouchDown(button: UIButton)のようにして
+     closeButtonTouchDownとreloadButtonTouchDownを一つにしたいが
+     #selector()に入るのは関数名のみで引数を指定することはできないようなので断念
+    */
+    
     
     private func setupReloadButton() {
         reloadButton.setTitle("reload", for: .normal)
@@ -79,7 +87,6 @@ class WeatherView: UIView {
         closeButton.addTarget(self, action: #selector(reloadButtonTouchDown), for: .touchDown)
     }
     @objc func reloadButtonTouchDown() {
-        print("ボタンが押された")
         reloadButton.setTitleColor(UIColor(red: 72/255, green: 152/255, blue: 235/255, alpha: 0.2), for: .highlighted)
     }
     
