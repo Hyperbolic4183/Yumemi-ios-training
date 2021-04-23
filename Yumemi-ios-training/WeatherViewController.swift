@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
-    private(set) var weatherView = WeatherView()//懸念点:名前同じ
+    private(set) var weatherView = WeatherView()
     
     override func loadView() {
         view = weatherView
