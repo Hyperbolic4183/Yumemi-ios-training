@@ -16,12 +16,14 @@ class WeatherView: UIView {
     //UI部品を定義する
     let weatherImageView = UIImageView()
     let closeButton = UIButton()
+    let reloadButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         setupWeatherImageView()
         setupCloseButton()
+        setupReloadButton()
     }
     
     required init?(coder: NSCoder) {
@@ -55,4 +57,15 @@ class WeatherView: UIView {
         closeButton.frame = CGRect(origin: point, size: size)
     }
     
+    private func setupReloadButton() {
+        reloadButton.setTitle("reload", for: .normal)
+        reloadButton.setTitleColor(.blue, for: .normal)
+        addSubview(reloadButton)
+        let x = screenWidth/2
+        let y = screenHeight/2 + screenWidth/4 + 80
+        let width = screenWidth/4
+        let sizeOfreloadLabel = reloadButton.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+        let point = CGPoint(x: x, y: y)
+        reloadButton.frame = CGRect(origin: point, size: CGSize(width: width, height: sizeOfreloadLabel.height))
+    }
 }
