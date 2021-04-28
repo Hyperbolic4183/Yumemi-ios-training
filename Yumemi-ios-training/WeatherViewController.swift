@@ -13,6 +13,6 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //test
+        //メインに変更点を追加
     }
 }
